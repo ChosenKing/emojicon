@@ -63,7 +63,7 @@ compile 'com.rockerhieu.emojicon:library:<latest-version>'
 
 ## Building in Eclipse
 
-![Go home you're drunk](http://img2.wikia.nocookie.net/__cb20130819142928/cardfight/images/thumb/5/55/Go-home-youre-drunk.jpg/500px-Go-home-youre-drunk.jpg)
+Just do it!!!
 
 ## Acknowledgements
 

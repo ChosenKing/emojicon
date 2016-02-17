@@ -1729,7 +1729,6 @@ public final class EmojiconHandler {
             		end = i;
                     text.setSpan(new EmojiconSpan(context, EmotionHelper.EmotionRule.get(text.toString().substring(starts, end+1)), emojiSize, emojiAlignment, textSize), starts, end+1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
             	}
-            	
             }
         }
     }
