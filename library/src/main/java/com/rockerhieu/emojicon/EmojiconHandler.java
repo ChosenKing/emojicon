@@ -15,12 +15,17 @@
  */
 package com.rockerhieu.emojicon;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
+import android.util.Log;
 import android.util.SparseIntArray;
-
 import java.util.HashMap;
 import java.util.Map;
+import com.rockerhieu.emojicon.emoji.EmotionHelper;
 
 /**
  * @author Hieu Rocker (rockerhieu@gmail.com)
@@ -1545,6 +1550,8 @@ public final class EmojiconHandler {
         sEmojisMap.put(0x2623, R.drawable.emoji_2623);
         sEmojisMap.put(0x1f5e8, R.drawable.emoji_1f5e8);
     }
+    
+    
 
     private static boolean isSoftBankEmoji(char c) {
         return ((c >> 12) == 0xe);
@@ -1612,7 +1619,8 @@ public final class EmojiconHandler {
      * @param length
      * @param useSystemDefault
      */
-    public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize, int index, int length, boolean useSystemDefault) {
+    @SuppressLint("NewApi")
+	public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize, int index, int length, boolean useSystemDefault) {
         if (useSystemDefault) {
             return;
         }
@@ -1628,6 +1636,8 @@ public final class EmojiconHandler {
         }
 
         int skip;
+        int starts = 0;
+        int end = 0;
         for (int i = index; i < textLengthToProcess; i += skip) {
             skip = 0;
             int icon = 0;
@@ -1710,6 +1720,16 @@ public final class EmojiconHandler {
 
             if (icon > 0) {
                 text.setSpan(new EmojiconSpan(context, icon, emojiSize, emojiAlignment, textSize), i, i + skip, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            else {
+            	if ((c+"").equals("[")) {
+					starts = i;
+				}  
+            	else if ((c+"").equals("]")) {
+            		end = i;
+                    text.setSpan(new EmojiconSpan(context, EmotionHelper.EmotionRule.get(text.toString().substring(starts, end+1)), emojiSize, emojiAlignment, textSize), starts, end+1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            	}
+            	
             }
         }
     }

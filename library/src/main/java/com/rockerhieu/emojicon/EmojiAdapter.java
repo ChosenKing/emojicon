@@ -72,17 +72,17 @@ class EmojiAdapter extends ArrayAdapter<Emojicon> {
         Emojicon emoji = getItem(position);
         ViewHolder holder = (ViewHolder) v.getTag();
         
-        if (emoji.getEmoji().contains("[") && emoji.getEmoji().contains("]")) {
-        	Drawable drawable = getContext().getResources().getDrawable( EmotionHelper.EmotionRule.get(emoji.getEmoji()));            
-            drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*0.5), (int)(drawable.getIntrinsicHeight()*0.5));           
-            ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);            
-            SpannableString ss = new SpannableString(emoji.getEmoji());
-            ss.setSpan(span, 0, emoji.getEmoji().length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-            holder.icon.setText(ss); 
-		}
-        else {
+//        if (emoji.getEmoji().contains("[") && emoji.getEmoji().contains("]")) {
+//        	Drawable drawable = getContext().getResources().getDrawable( EmotionHelper.EmotionRule.get(emoji.getEmoji()));            
+//            drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*0.5), (int)(drawable.getIntrinsicHeight()*0.5));           
+//            ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);            
+//            SpannableString ss = new SpannableString(emoji.getEmoji());
+//            ss.setSpan(span, 0, emoji.getEmoji().length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+//            holder.icon.setText(ss); 
+//		}
+//        else {
         	holder.icon.setText(emoji.getEmoji());
-        }
+//        }
         return v;
     }
 
