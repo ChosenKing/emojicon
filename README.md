@@ -8,6 +8,9 @@ Do you like emojis in Whatsapp, iMessage? [Emojicon](http://rockerhieu.github.io
 
 Fore more information please see [the website](http://rockerhieu.github.io/emojicon/)
 
+## 自定义表情加入
+按照"[哈哈]"等规则加入了个性化表情，详情看EmotionHelper
+
 ## Example
 
 ```xml
@@ -38,7 +41,7 @@ Fore more information please see [the website](http://rockerhieu.github.io/emoji
 </LinearLayout>
 ```
 
-![image](https://github.com/rockerhieu/emojicon/raw/master/images/sample.jpg)
+![image](https://github.com/rockerhieu/emojicon/raw/master/images/sample.png)
 
 _Note: You can change the size and alignment of emojis in XML layout through attribute `emojiconSize` and `emojiconAlignment`, respectively._
 
@@ -94,3 +97,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+
