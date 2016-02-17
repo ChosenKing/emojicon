@@ -24,108 +24,115 @@ import android.os.Parcelable;
  */
 public class Emojicon implements Parcelable {
 
-    public static final Creator<Emojicon> CREATOR = new Creator<Emojicon>() {
-        @Override
-        public Emojicon createFromParcel(Parcel in) {
-            return new Emojicon(in);
-        }
+	public static final Creator<Emojicon> CREATOR = new Creator<Emojicon>() {
+		@Override
+		public Emojicon createFromParcel(Parcel in) {
+			return new Emojicon(in);
+		}
 
-        @Override
-        public Emojicon[] newArray(int size) {
-            return new Emojicon[size];
-        }
-    };
+		@Override
+		public Emojicon[] newArray(int size) {
+			return new Emojicon[size];
+		}
+	};
 
-    private int icon;
+	private int icon;
 
-    private char value;
+	private char value;
 
-    private String emoji;
+	private String emoji;
 
-    public Emojicon(int icon, char value, String emoji) {
-        this.icon = icon;
-        this.value = value;
-        this.emoji = emoji;
-    }
+	public Emojicon(int icon, char value, String emoji) {
+		this.icon = icon;
+		this.value = value;
+		this.emoji = emoji;
+	}
 
-    public Emojicon(Parcel in) {
-        this.icon = in.readInt();
-        this.value = (char) in.readInt();
-        this.emoji = in.readString();
-    }
+	public Emojicon(Parcel in) {
+		this.icon = in.readInt();
+		this.value = (char) in.readInt();
+		this.emoji = in.readString();
+	}
 
-    private Emojicon() {
-    }
+	private Emojicon() {
+	}
 
-    public Emojicon(String emoji) {
-        this.emoji = emoji;
-    }
+	public Emojicon(String emoji) {
+		this.emoji = emoji;
+	}
 
-    public static Emojicon fromResource(int icon, int value) {
-        Emojicon emoji = new Emojicon();
-        emoji.icon = icon;
-        emoji.value = (char) value;
-        return emoji;
-    }
+	public static Emojicon fromResource(int icon, int value) {
+		Emojicon emoji = new Emojicon();
+		emoji.icon = icon;
+		emoji.value = (char) value;
+		return emoji;
+	}
 
-    public static Emojicon fromCodePoint(int codePoint) {
-        Emojicon emoji = new Emojicon();
-        emoji.emoji = newString(codePoint);
-        return emoji;
-    }
+	public static Emojicon fromResource(int icon, String value) {
+		Emojicon emoji = new Emojicon();
+		emoji.icon = icon;
+		emoji.emoji = value;
+		return emoji;
+	}
 
-    public static Emojicon fromChar(char ch) {
-        Emojicon emoji = new Emojicon();
-        emoji.emoji = Character.toString(ch);
-        return emoji;
-    }
+	public static Emojicon fromCodePoint(int codePoint) {
+		Emojicon emoji = new Emojicon();
+		emoji.emoji = newString(codePoint);
+		return emoji;
+	}
 
-    public static Emojicon fromChars(String chars) {
-        Emojicon emoji = new Emojicon();
-        emoji.emoji = chars;
-        return emoji;
-    }
+	public static Emojicon fromChar(char ch) {
+		Emojicon emoji = new Emojicon();
+		emoji.emoji = Character.toString(ch);
+		return emoji;
+	}
 
-    public static final String newString(int codePoint) {
-        if (Character.charCount(codePoint) == 1) {
-            return String.valueOf(codePoint);
-        } else {
-            return new String(Character.toChars(codePoint));
-        }
-    }
+	public static Emojicon fromChars(String chars) {
+		Emojicon emoji = new Emojicon();
+		emoji.emoji = chars;
+		return emoji;
+	}
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+	public static final String newString(int codePoint) {
+		if (Character.charCount(codePoint) == 1) {
+			return String.valueOf(codePoint);
+		} else {
+			return new String(Character.toChars(codePoint));
+		}
+	}
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(icon);
-        dest.writeInt(value);
-        dest.writeString(emoji);
-    }
+	@Override
+	public int describeContents() {
+		return 0;
+	}
 
-    public char getValue() {
-        return value;
-    }
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(icon);
+		dest.writeInt(value);
+		dest.writeString(emoji);
+	}
 
-    public int getIcon() {
-        return icon;
-    }
+	public char getValue() {
+		return value;
+	}
 
-    public String getEmoji() {
-        return emoji;
-    }
+	public int getIcon() {
+		return icon;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof Emojicon && emoji.equals(((Emojicon) o).emoji);
-    }
+	public String getEmoji() {
+		return emoji;
+	}
 
-    @Override
-    public int hashCode() {
-        return emoji.hashCode();
-    }
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof Emojicon && emoji.equals(((Emojicon) o).emoji);
+	}
+
+	@Override
+	public int hashCode() {
+		return emoji.hashCode();
+	}
 
 }
